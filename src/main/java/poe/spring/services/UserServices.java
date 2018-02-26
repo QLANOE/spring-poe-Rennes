@@ -1,6 +1,8 @@
 package poe.spring.services;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.BadAttributeValueExpException;
 
@@ -17,6 +19,8 @@ public class UserServices {
 	@Autowired
 	UserRepository userRepository;
 
+	protected static Logger logger = Logger.getLogger("poe.string.api.TrajetRestController");
+
 	public User inscription(String login, String password) throws BadAttributeValueExpException {
 
 		User user = new User();
@@ -24,7 +28,7 @@ public class UserServices {
 		if (chercherUserParLogin(login) == null && LoginCreation.checkLoginInterdit(login)) {
 			user.setPassword(password);
 			userRepository.save(user);
-			System.out.println("Enregistrement effectué");
+			logger.log(Level.FINEST, "Enregistrement effectué");
 			return user;
 		}
 		throw new BadAttributeValueExpException(login);
@@ -32,20 +36,17 @@ public class UserServices {
 
 	public List<User> listerUsers() {
 
-		List<User> users = (List<User>) userRepository.findAll();
-		return users;
+		return (List<User>) userRepository.findAll();
 	}
 
 	public User chercherUser(Long id) {
 
-		User user = userRepository.findOne(id);
-		return user;
+		return userRepository.findOne(id);
 	}
 
 	public User chercherUserParLogin(String login) {
 
-		User user = userRepository.findByLogin(login);
-		return user;
+		return userRepository.findByLogin(login);
 	}
 
 	public void supprimerUser(Long id) {

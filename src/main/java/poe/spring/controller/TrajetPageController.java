@@ -62,6 +62,7 @@ public class TrajetPageController {
 			return "/listTrajets";
 		} else {
 			List<Trajet> trajets = trajetService.chercherParVilleDepartOuVillaArrivee(ville, ville);
+			model.addAttribute("trajets", trajets);
 			return "/listTrajets";
 		}
 	}

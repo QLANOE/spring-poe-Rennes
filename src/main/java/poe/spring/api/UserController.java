@@ -1,6 +1,8 @@
 package poe.spring.api;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.BadAttributeValueExpException;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +25,14 @@ public class UserController {
 	@Autowired
 	UserServices userServices;
 
+	protected static Logger logger = Logger.getLogger("poe.string.api.UserController");
+
 	@PostMapping
 	public User save(@RequestBody User user) {
 		User savedUser;
 		try {
 			savedUser = userServices.inscription(user.getLogin(), user.getPassword());
-			System.out.println("user id sqsq: " + savedUser);
+			logger.log(Level.FINE, savedUser + "");
 			return savedUser;
 		} catch (BadAttributeValueExpException e) {
 			e.printStackTrace();
@@ -41,7 +45,7 @@ public class UserController {
 	@GetMapping
 	public List<User> listerUser() {
 		List<User> savedUsers = userServices.listerUsers();
-		System.out.println("user id sqsq: " + savedUsers);
+		logger.log(Level.FINE, savedUsers + "");
 		return savedUsers;
 
 	}
@@ -53,7 +57,7 @@ public class UserController {
 		if (savedUser == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		} else {
-			System.out.println("user id sqsq: " + savedUser);
+			logger.log(Level.FINE, savedUser + "");
 		}
 		return savedUser;
 	}
@@ -62,7 +66,7 @@ public class UserController {
 	public User afficherUserParLogin(@PathVariable(value = "login") String login) {
 
 		User savedUser = userServices.chercherUserParLogin(login);
-		System.out.println("user id sqsq: " + savedUser);
+		logger.log(Level.FINE, savedUser + "");
 		return savedUser;
 	}
 
@@ -73,10 +77,10 @@ public class UserController {
 	}
 
 	@GetMapping("/{Id}")
-	public User modifierUser(@RequestBody User user, @PathVariable(value = "Id") Long Id) {
+	public User modifierUser(@RequestBody User user, @PathVariable(value = "Id") Long id) {
 
-		User savedUser = userServices.modifierUser(user.getLogin(), user.getPassword(), Id);
-		System.out.println("user id sqsq: " + savedUser);
+		User savedUser = userServices.modifierUser(user.getLogin(), user.getPassword(), id);
+		logger.log(Level.FINE, savedUser + "");
 		return savedUser;
 	}
 

@@ -27,25 +27,21 @@ public class UserServicesTests {
 	@Test
 	public void creationUser() throws BadAttributeValueExpException {
 
-		assertThat(userRepository.count() == 0);
-
 		String login = "bob";
 		String password = "pwd";
 
 		User userCreated = userServices.inscription(login, password);
 		assertThat(userCreated).isNotNull();
-		assertThat(userCreated.getLogin().equals(login));
+		assertThat(userCreated.getLogin().equals(login)).isTrue();
 
 		User userSaved = userRepository.findOne(userCreated.getId());
 		assertThat(userSaved).isNotNull();
-		assertThat(userSaved.getLogin().equals(login));
+		assertThat(userSaved.getLogin().equals(login)).isTrue();
 
 	}
 
 	@Test
 	public void destructionUser() throws BadAttributeValueExpException {
-
-		assertThat(userRepository.count() == 0);
 
 		String login = "boby";
 		String password = "pwd";
@@ -53,7 +49,7 @@ public class UserServicesTests {
 		User userCreated = userServices.inscription(login, password);
 		assertThat(userRepository.count() > 0);
 		assertThat(userCreated).isNotNull();
-		assertThat(userCreated.getLogin().equals(login));
+		assertThat(userCreated.getLogin().equals(login)).isTrue();
 
 		userRepository.delete(userCreated.getId());
 

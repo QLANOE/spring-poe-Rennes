@@ -18,7 +18,7 @@ import poe.spring.services.UserServices;
 
 @Controller
 @RequestMapping("/")
-public class HomePageController<User> {
+public class HomePageController {
 
 	@Autowired
 	UserServices userService;

@@ -24,21 +24,18 @@ public class TrajetServices {
 
 	public List<Trajet> listerTrajets() {
 
-		List<Trajet> trajets = (List<Trajet>) trajetRepository.findAll();
-		return trajets;
+		return (List<Trajet>) trajetRepository.findAll();
+
 	}
 
 	public Trajet chercherTrajet(Long id) {
 
-		Trajet trajet = trajetRepository.findOne(id);
-		return trajet;
+		return trajetRepository.findOne(id);
 	}
 
 	public List<Trajet> chercherParVilleDepartOuVillaArrivee(String ville, String villebis) {
 
-		List<Trajet> listTrajet = trajetRepository.findByVilleDepartOrVilleArrivee(ville, villebis);
-
-		return listTrajet;
+		return trajetRepository.findByVilleDepartOrVilleArrivee(ville, villebis);
 
 	}
 }

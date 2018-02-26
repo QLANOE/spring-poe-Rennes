@@ -28,8 +28,6 @@ public class TrajetServicesTest {
 	@Test
 	public void creationTrajet() {
 
-		assertThat(trajetRepository.count() == 0);
-
 		String villeDepart = "Rennes";
 		String villeArrivee = "Pace";
 		Date dateDepart = null;
@@ -45,7 +43,7 @@ public class TrajetServicesTest {
 
 		Trajet userSaved = trajetRepository.findOne(trajetCreated.getId());
 		assertThat(userSaved).isNotNull();
-		assertThat(userSaved.getVilleDepart().equals(villeDepart));
+		assertThat(userSaved.getVilleDepart().equals(villeDepart)).isTrue();
 
 	}
 
@@ -65,7 +63,7 @@ public class TrajetServicesTest {
 		Trajet trajetCreated = trajetServices.ajout(trajet);
 		assertThat(trajetRepository.count() > 0);
 		assertThat(trajetCreated).isNotNull();
-		assertThat(trajetCreated.getVilleDepart().equals(villeDepart));
+		assertThat(trajetCreated.getVilleDepart().equals(villeDepart)).isTrue();
 
 		trajetRepository.delete(trajetCreated.getId());
 

@@ -1,4 +1,4 @@
-package poe.spring.SPRING;
+package poe.spring.springTest;
 
 public class Greeting {
 
