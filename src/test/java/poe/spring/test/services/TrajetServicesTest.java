@@ -49,7 +49,6 @@ public class TrajetServicesTest {
 
 	@Test
 	public void destructionUser() {
-		assertThat(trajetRepository.count() == 0);
 
 		String villeDepart = "Truc";
 		String villeArrivee = "muche";
@@ -61,7 +60,6 @@ public class TrajetServicesTest {
 		Trajet trajet = new Trajet(villeDepart, villeArrivee, dateDepart, prix, nbPlaces, user);
 
 		Trajet trajetCreated = trajetServices.ajout(trajet);
-		assertThat(trajetRepository.count() > 0);
 		assertThat(trajetCreated).isNotNull();
 		assertThat(trajetCreated.getVilleDepart().equals(villeDepart)).isTrue();
 

@@ -1,7 +1,6 @@
 package poe.spring.api;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class TrajetRestController {
 	public Trajet save(@RequestBody Trajet trajet) {
 		Trajet savedTrajet;
 		savedTrajet = trajetServices.ajout(trajet);
-		logger.log(Level.FINE, savedTrajet + "");
+		logger.fine(savedTrajet + "");
 		return savedTrajet;
 
 	}
@@ -36,7 +35,7 @@ public class TrajetRestController {
 	@GetMapping
 	public List<Trajet> listerUser() {
 		List<Trajet> savedTrajets = trajetServices.listerTrajets();
-		logger.log(Level.FINE, savedTrajets + "");
+		logger.fine(savedTrajets + "");
 		return savedTrajets;
 
 	}
