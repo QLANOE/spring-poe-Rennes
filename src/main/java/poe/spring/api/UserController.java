@@ -1,7 +1,6 @@
 package poe.spring.api;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.management.BadAttributeValueExpException;
 import javax.servlet.http.HttpServletResponse;
@@ -24,14 +23,11 @@ public class UserController {
 	@Autowired
 	UserServices userServices;
 
-	protected static Logger logger = Logger.getLogger("poe.string.api.UserController");
-
 	@PostMapping
 	public User save(@RequestBody User user) {
 		User savedUser;
 		try {
 			savedUser = userServices.inscription(user.getLogin(), user.getPassword());
-			logger.fine(savedUser + "");
 			return savedUser;
 		} catch (BadAttributeValueExpException e) {
 			e.printStackTrace();
@@ -44,7 +40,6 @@ public class UserController {
 	@GetMapping
 	public List<User> listerUser() {
 		List<User> savedUsers = userServices.listerUsers();
-		logger.fine(savedUsers + "");
 		return savedUsers;
 
 	}
@@ -55,8 +50,6 @@ public class UserController {
 		User savedUser = userServices.chercherUser(id);
 		if (savedUser == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		} else {
-			logger.fine(savedUser + "");
 		}
 		return savedUser;
 	}
@@ -65,7 +58,6 @@ public class UserController {
 	public User afficherUserParLogin(@PathVariable(value = "login") String login) {
 
 		User savedUser = userServices.chercherUserParLogin(login);
-		logger.fine(savedUser + "");
 		return savedUser;
 	}
 
@@ -79,7 +71,6 @@ public class UserController {
 	public User modifierUser(@RequestBody User user, @PathVariable(value = "Id") Long id) {
 
 		User savedUser = userServices.modifierUser(user.getLogin(), user.getPassword(), id);
-		logger.fine(savedUser + "");
 		return savedUser;
 	}
 
