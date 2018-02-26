@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<body>
+	<form action="#" th:action="@{/trajet/sauvegardeTrajet}"
+		th:object="${trajetForm}" method="post">
+
+		<p>Selection d'un utilisateur</p>
+		<SELECT>
+			<OPTION th:each="user : ${users}" name="user" size="1" th:text="${user.login}"></OPTION>
+		</SELECT>
+
+		<p>Ville de départ</p>
+		<input type="text" name="villeDepart" placeholder="ville de départ"
+			required="true" /> <span th:if="${#fields.hasErrors('villeDepart')}"
+			th:errors="*{villeDepart}" />
+			
+		<p>Ville d'arrivée</p>
+		<input type="text" name="villeArrivee" placeholder="ville d'arrivée"
+			required="true" /> <span
+			th:if="${#fields.hasErrors('villeArrivee')}"
+			th:errors="*{villeArrivee}" />
+			
+		<p>Date de départ</p>
+		<input type="date" name="dateDepart" required="true" /> <span
+			th:if="${#fields.hasErrors('dateDepart')}" th:errors="*{dateDepart}" />
+			
+		<p>Prix</p>
+		<input type="number" name="prix" placeholder="prix en euro"
+			required="true" /> <span th:if="${#fields.hasErrors('prix')}"
+			th:errors="*{prix}" />
+			
+		<p>Nombre de place</p>
+		<input type="number" name="nbPlace" placeholder="nombre de place"
+			required="true" /> <span th:if="${#fields.hasErrors('nbPlace')}"
+			th:errors="*{nbPlace}" /> <input th:type="submit" value="OK" />
+
+
+	</form>
+
+</body>
+</html>

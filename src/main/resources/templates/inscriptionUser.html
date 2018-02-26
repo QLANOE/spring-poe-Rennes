@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="#" th:action="@{/utilisateur}" th:object="${User}"
+              method="post">
+              
+	<p>login</p>
+	<input type="text" name="login" placeholder="login" required="true"/>
+	<p>password</p>
+	<input type="password" name="password" placeholder="password" required="true"/>
+	<p>confirmer password</p>
+	<input type="password" name="passwordbis" placeholder="password" required="true"/>
+	<input th:type="submit" value="OK"/>
+
+</form>
+	
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form action="#" th:action="@{/trajet/listTrajets}" method="Get">
+
+		<p>Nom de la ville</p>
+		<input type="text" name="ville" placeholder="ville" required="false" />
+		<input th:type="submit" value="OK" />
+	</form>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<td>Ville de départ</td>
+					<td>Ville d'arrivée</td>
+					<td>Date de départ</td>
+					<td>Prix</td>
+					<td>Nombre de place</td>
+					<td>Utilisateur</td>
+				</tr>
+				<tr th:each="trajet : ${trajets}">
+					<td th:text="${trajet.id}" />
+					<td th:text="${trajet.villeDepart}" />
+					<td th:text="${trajet.villeArrivee}" />
+					<td th:text="${trajet.dateDepart}" />
+					<td th:text="${trajet.nbPlaces}" />
+					<td th:text="${trajet.prix}" />
+					<td th:text="${trajet.user}" />
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+
+
+
+</body>
+</html>
