@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.management.BadAttributeValueExpException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import poe.spring.repository.UserRepository;
 
 @Service
 public class UserServices {
+
+	Logger logger = LoggerFactory.getLogger("poe.spring.services.UserServices");
 
 	@Autowired
 	UserRepository userRepository;
@@ -24,6 +28,7 @@ public class UserServices {
 		if (chercherUserParLogin(login) == null && LoginCreation.checkLoginInterdit(login)) {
 			user.setPassword(password);
 			userRepository.save(user);
+			logger.debug("User créée " + user.getId() + "	" + user.getLogin());
 			return user;
 		}
 		throw new BadAttributeValueExpException(login);
@@ -56,6 +61,7 @@ public class UserServices {
 		user.setLogin(login);
 		user.setPassword(password);
 		userRepository.save(user);
+		logger.debug("User modifié " + user.getId() + "	" + user.getLogin());
 		return user;
 	}
 
