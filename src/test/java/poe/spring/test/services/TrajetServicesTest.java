@@ -39,7 +39,7 @@ public class TrajetServicesTest {
 
 		Trajet trajetCreated = trajetServices.ajout(trajet);
 		assertThat(trajetCreated).isNotNull();
-		assertThat(trajetCreated.getVilleDepart().equals(villeDepart));
+		assertThat(trajetCreated.getVilleDepart().equals(villeDepart)).isTrue();
 
 		Trajet userSaved = trajetRepository.findOne(trajetCreated.getId());
 		assertThat(userSaved).isNotNull();

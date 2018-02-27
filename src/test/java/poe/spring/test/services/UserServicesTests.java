@@ -47,7 +47,6 @@ public class UserServicesTests {
 		String password = "pwd";
 
 		User userCreated = userServices.inscription(login, password);
-		assertThat(userRepository.count() > 0);
 		assertThat(userCreated).isNotNull();
 		assertThat(userCreated.getLogin().equals(login)).isTrue();
 
